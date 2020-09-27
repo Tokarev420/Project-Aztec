@@ -4,34 +4,83 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float speed;                //Floating point variable to store the player's movement speed.
+    public float speed;  
+    public float angularSpeed;
+    public Transform wheelTransform;              
 
-    private Rigidbody2D rb2d;        //Store a reference to the Rigidbody2D component required to use 2D Physics.
+    private Rigidbody2D rb2d; 
+    private int lastDir = 0;   
+    private float zAng = 0;    
+    private float targetAngle = 0;
+    private bool returning = false;
 
-    // Use this for initialization
+
     void Start()
     {
-        //Get and store a reference to the Rigidbody2D component so that we can access it.
         rb2d = GetComponent<Rigidbody2D> ();
     }
 
-    //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
     void FixedUpdate()
     {
-        //Store the current horizontal input in the float moveHorizontal.
-        float moveHorizontal = Input.GetAxis ("Horizontal");
+        float moveHorizontal = 0.0f;
+        float moveVertical = 0.0f;
 
-        //Store the current vertical input in the float moveVertical.
-        float moveVertical = Input.GetAxis ("Vertical");
+        returning = true;
+        bool rotating = false;
 
-        //Use the two store floats to create a new Vector2 variable movement.
+        if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+        {
+        	lastDir = 0;
+        	moveVertical += 1.0f;
+        }
+
+        if(Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+        {
+        	lastDir = 0;
+        	moveVertical -= 1.0f;
+        }
+
+        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        {
+        	lastDir = 1;
+        	moveHorizontal -= 1.0f;
+        	rotating = true;
+        	returning = false;
+        }
+
+        if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        {
+        	lastDir = -1;
+        	moveHorizontal += 1.0f;
+        	rotating = true;
+        	returning = false;
+        }
+
+        if(rotating)
+        {
+        	float step = angularSpeed * Time.fixedDeltaTime;
+        	float z = wheelTransform.rotation.eulerAngles.z;
+        	Vector3 offset = new Vector3(0.0f, 0.0f, step * lastDir);
+        	Quaternion currentRotation = Quaternion.identity;
+        	currentRotation.eulerAngles = wheelTransform.rotation.eulerAngles + offset;
+        	zAng = currentRotation.eulerAngles.z;
+        	wheelTransform.rotation = currentRotation;
+        }
+        else if(returning)
+        {
+        	//targetAngle = (int) zAng / 120 + (lastDir)
+        }
+
         Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
-
-        //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
-        rb2d.AddForce (movement * speed);
+        movement = movement * speed;
+        rb2d.MovePosition(rb2d.position + movement * Time.fixedDeltaTime);
     }
 
-    // Update is called once per frame
+    void OnGUI()
+    {
+        GUI.Label(new Rect(10, 10, 100, 20), "Z: " + zAng);
+    }
+
     void Update()
     {
         
