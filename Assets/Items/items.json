@@ -1,0 +1,12 @@
+{"id":0,"divisible":false,"divisibles":[],"name":"Battery", "description":"12V DC Battery"}
+{"id":1,"divisible":false,"divisibles":[],"name":"Capacitor", "description":"Electrical part"}
+{"id":2,"divisible":false,"divisibles":[],"name":"Coil", "description":"Electrical part"}
+{"id":3,"divisible":false,"divisibles":[],"name":"Diode", "description":"Electrical part"}
+{"id":4,"divisible":false,"divisibles":[],"name":"LCD", "description":"Electrical part"}
+{"id":5,"divisible":false,"divisibles":[],"name":"LED", "description":"Electrical part"}
+{"id":6,"divisible":false,"divisibles":[],"name":"Magnet", "description":"Electrical part"}
+{"id":7,"divisible":false,"divisibles":[],"name":"Resistor", "description":"Electrical part"}
+{"id":8,"divisible":false,"divisibles":[],"name":"Switch", "description":"Electrical part"}
+{"id":9,"divisible":false,"divisibles":[],"name":"Transistor", "description":"Electrical part"}
+{"id":10,"divisible":true,"divisibles":[{"ItemId":0,"Num":1},{"ItemId":0,"Num":10}],"name":"C4", "description":"C4 Explosive"}
+{"id":11,"divisible":true,"divisibles":[{"ItemId":0,"Num":1},{"ItemId":5,"Num":1}],"name":"Flashlight", "description":"Improves vision nearby"}

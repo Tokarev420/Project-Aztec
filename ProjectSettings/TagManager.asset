@@ -41,9 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Layer1
+  - name: Terrain
     uniqueID: 43320197
     locked: 0
-  - name: Layer0
+  - name: Players
     uniqueID: 4074236503
+    locked: 0
+  - name: Items
+    uniqueID: 1866745599
     locked: 0

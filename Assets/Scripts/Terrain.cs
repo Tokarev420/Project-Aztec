@@ -8,6 +8,7 @@ public class Terrain : MonoBehaviour
 
 	public Color color;
 	public float scale = 1.0f;
+	public float fill = 1.0f;
 	public Vector2 size;
 	public Vector2 spriteSize;
 	public Sprite[] sprites;
@@ -25,6 +26,8 @@ public class Terrain : MonoBehaviour
         {
         	for(int j=0;j<size.y;j++)
 	        {
+	        	if(Random.value > fill) continue;
+
 	        	GameObject obj = new GameObject();
 	        	Quaternion rotationQuaternion = Quaternion.identity;
 	        	rotationQuaternion.eulerAngles = new Vector3(0, 0, Random.Range(0,4) * 90);
@@ -35,6 +38,7 @@ public class Terrain : MonoBehaviour
 	        	obj.transform.parent = this.transform;
 
 	        	SpriteRenderer rend = obj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+	        	rend.sortingLayerName = "Terrain";
          		rend.sprite = sprites[Random.Range(0, sprites.Length)];
          		rend.color = color;
 	        }
