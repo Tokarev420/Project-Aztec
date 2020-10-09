@@ -32,6 +32,11 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    public Item GetInventoryItem(int idx)
+    {
+        return Items[Inventory[idx].ItemId];
+    }
+
     void Update()
     {
         

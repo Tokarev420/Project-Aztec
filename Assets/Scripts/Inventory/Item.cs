@@ -21,10 +21,15 @@ public struct Stack
 }
 
 
+/// TYPE 0 - Uncraftable
+/// TYPE 1 - Tool
+/// TYPE 2 - Weapon
+
 [Serializable]
 public class Item
 {
 	public int id;
+	public int type = 0;
 	public bool divisible = true;
 	public List<Stack> divisibles;
 	public string name;
@@ -34,6 +39,7 @@ public class Item
 	{
 		 id = _id;
 		 name = _name;
+		 type = 0;
 		 divisible = _divisible;
 		 divisibles = new List<Stack>();
 	}

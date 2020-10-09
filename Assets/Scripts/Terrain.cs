@@ -12,7 +12,10 @@ public class Terrain : MonoBehaviour
 	public Vector2 size;
 	public Vector2 spriteSize;
 	public Sprite[] sprites;
+	public Sprite[] normals;
 	private List<GameObject> objects;
+	public Material material;
+	public bool EnableLights = true;
 
 
     void Start()
@@ -41,6 +44,12 @@ public class Terrain : MonoBehaviour
 	        	rend.sortingLayerName = "Terrain";
          		rend.sprite = sprites[Random.Range(0, sprites.Length)];
          		rend.color = color;
+
+         		//if(EnableLights)
+         		//	rend.material.CopyPropertiesFromMaterial(material);    
+         		//rend.material.SetTexture("_NormalMap", UtilSprites.TextureFromSprite(rend.sprite));
+
+         		objects.Add(obj);
 	        }
         }
 
